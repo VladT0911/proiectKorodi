@@ -1,12 +1,39 @@
-<button mat-icon-button style="align-self: flex-end;"><mat-icon fontIcon="close"></mat-icon></button>
+<button mat-icon-button mat-dialog-close style="align-self: flex-end;"><mat-icon fontIcon="close"></mat-icon></button>
 <h2 mat-dialog-title>Create order form</h2>
 <mat-dialog-content>
   <h3>Please enter details about this order</h3>
   <p>
     <mat-form-field>
       <mat-label>Product</mat-label>
-      <input matInput placeholder="Products">
-      <mat-icon matSuffix fontIcon="person"></mat-icon>
+      <input matInput placeholder="Product">
+      <mat-icon matSuffix fontIcon="edit"></mat-icon>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Machine</mat-label>
+      <input matInput placeholder="Pick the machine">
+      <mat-icon matSuffix fontIcon="settings"></mat-icon>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Number of Products</mat-label>
+      <input type="number" matInput placeholder="Type a number">
+
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Deadline</mat-label>
+      <input matInput placeholder="Choose a date">
+      <mat-icon matSuffix fontIcon="query_builder"></mat-icon>
     </mat-form-field>
   </p>
 </mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="onCreateOrder()">
+    Create Order
+  </button>
+</mat-dialog-actions>
