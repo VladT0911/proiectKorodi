@@ -1,24 +1,26 @@
 {"orders":[
     {
       "id": 1,
-      "name": "Order 1",
-      "status": "Pending",
-      "product": "Product A",
-      "quantity": 3
+      "order_name": "Order 1",
+      "order_status": "Pending",
+      "product_name": "Product A",
+      "quantity": 3,
+      "active_operators": 2
     },
     {
       "id": 2,
-      "name": "Order 2",
-      "status": "Completed",
-      "product": "Product B",
-      "quantity": 5
+      "order_name": "Order 2",
+      "order_status": "Pending",
+      "product_name": "Product B",
+      "quantity": 5,
+      "active_operators": 1
     },
     {
       "id": 3,
-      "name": "Order 3",
-      "status": "In Progress",
-      "product": "Product A",
-      "quantity": 10
+      "order_name": "Order 3",
+      "order_status": "Pending",
+      "product_name": "Product C",
+      "quantity": 2,
+      "active_operators": 3
     }
-
 ]}
