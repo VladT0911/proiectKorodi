@@ -3,72 +3,28 @@
     <h1>SCADA ERP Dashboard</h1>
     <span>Welcome, demo</span>
   </div>
-  <button mat-stroked-button color="primary">
-    Logout
-  </button>
+  <button mat-stroked-button color="primary">Logout</button>
 </header>
+
 <div class="cards">
   <mat-card class="card">
-    <div>
-      <p>Total Orders</p>
-      <h2>0</h2>
-    </div>
+    <div><p>Total Orders</p><h2>0</h2></div>
     <mat-icon color="primary">inventory_2</mat-icon>
   </mat-card>
-
   <mat-card class="card">
-    <div>
-      <p>Pending</p>
-      <h2>0</h2>
-    </div>
+    <div><p>Pending</p><h2>0</h2></div>
     <mat-icon color="warn">schedule</mat-icon>
   </mat-card>
-
   <mat-card class="card">
-    <div>
-      <p>Processing</p>
-      <h2>0</h2>
-    </div>
+    <div><p>Processing</p><h2>0</h2></div>
     <mat-icon color="accent">trending_up</mat-icon>
   </mat-card>
-
   <mat-card class="card">
-    <div>
-      <p>Completed</p>
-      <h2>0</h2>
-    </div>
+    <div><p>Completed</p><h2>0</h2></div>
     <mat-icon color="primary">check_circle</mat-icon>
   </mat-card>
 </div>
-<div class="container">
-  <button mat-raised-button color="warn" style="margin: 20px" (click)="openDialog()">Create new order</button>
-  <button mat-raised-button color="warn" style="margin: 20px">Edit a order</button>
-  <button mat-raised-button color="warn" style="margin: 20px">Delete an order</button>
 
-</div>
-<mat-card class="orders">
 
-  <div class="orders-header">
-    <h2>PLC Orders</h2>
 
-    <div>
-      <button mat-raised-button color="primary">
-        Simulate PLC Order
-      </button>
-
-      <button mat-stroked-button>
-        Refresh
-      </button>
-    </div>
-  </div>
-
-  <!-- Filters -->
-  <div class="filters">
-    <button mat-button color="primary">All</button>
-    <button mat-button>Pending</button>
-    <button mat-button>Processing</button>
-    <button mat-button>Completed</button>
-  </div>
-</mat-card>
-<app-dashboard></app-dashboard>
 <router-outlet/>
