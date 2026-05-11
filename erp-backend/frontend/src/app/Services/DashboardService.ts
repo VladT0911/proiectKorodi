@@ -6,10 +6,11 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class DashboardService {
-  private url = 'http://localhost:3000';
+  private url = 'http://localhost:8083';
   constructor(private http: HttpClient) {}
 
   getData(): Observable<any> {
     return this.http.get<any>(`${this.url}/orders`);
   }
+
 }
