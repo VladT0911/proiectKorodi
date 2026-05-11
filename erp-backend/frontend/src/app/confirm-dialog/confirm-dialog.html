@@ -1,1 +1,8 @@
-<p>confirm-dialog works!</p>
+<h2 mat-dialog-title>Confirm</h2>
+<mat-dialog-content>
+  <p>Are you sure you want to create this order?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="confirm()">Confirm</button>
+</mat-dialog-actions>
