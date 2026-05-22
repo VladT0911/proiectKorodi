@@ -4,23 +4,23 @@
       "order_name": "Order 1",
       "order_status": "Pending",
       "product_name": "Product A",
-      "quantity": 3,
-      "active_operators": 2
+      "quantity": 3
+
     },
     {
       "id": 2,
       "order_name": "Order 2",
       "order_status": "Pending",
       "product_name": "Product B",
-      "quantity": 5,
-      "active_operators": 1
+      "quantity": 5
+
     },
     {
       "id": 3,
       "order_name": "Order 3",
       "order_status": "Pending",
       "product_name": "Product C",
-      "quantity": 2,
-      "active_operators": 3
+      "quantity": 2
+
     }
 ]}

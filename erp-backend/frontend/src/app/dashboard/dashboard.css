@@ -14,17 +14,8 @@
   font-weight: 500;
 }
 
-.badge-pending {
-  background-color: #fff3e0;
-  color: #e65100;
-}
-
-.badge-processing {
-  background-color: #e3f2fd;
-  color: #1565c0;
-}
-
-.badge-completed {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-}
+.badge-pending   { background: #FFF3CD; color: #856404; } /* yellow */
+.badge-active    { background: #CCE5FF; color: #004085; } /* blue   */
+.badge-done      { background: #D4EDDA; color: #155724; } /* green  */
+.badge-cancelled { background: #F8D7DA; color: #721C24; } /* red    */
+.badge-unknown   { background: #E2E3E5; color: #383D41; } /* gray   */

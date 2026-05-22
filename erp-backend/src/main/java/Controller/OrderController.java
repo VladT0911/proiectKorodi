@@ -1,4 +1,4 @@
-package com.vlad.erp_backend;
+package Controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

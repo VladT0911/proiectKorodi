@@ -12,5 +12,8 @@ export class DashboardService {
   getData(): Observable<any> {
     return this.http.get<any>(`${this.url}/orders`);
   }
+  updateData(id: number, data: any): Observable<any> {
+    return this.http.put<any>(`${this.url}/orders/${id}`, data);
+  }
 
 }
