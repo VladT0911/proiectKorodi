@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5bb73a1b-1ead-49f0-bbc8-ba06f75e868d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp-backend/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/erp-backend/frontend/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +32,12 @@
     &quot;assignee&quot;: &quot;VladT0911&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/VladT0911/proiectKorodi.git",
-    "accountId": "eb6779fd-50ac-4c4f-a3b6-29611fe3e181"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/VladT0911/proiectKorodi.git&quot;,
+    &quot;accountId&quot;: &quot;eb6779fd-50ac-4c4f-a3b6-29611fe3e181&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -47,6 +48,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Node.js.edit-dialog.ts.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -61,7 +63,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/home/spider/Desktop/proiectKorodi/erp-backend/frontend/node_modules/typescript/lib",
+    "ts.external.directory.path": "D:\\proiectKorodi\\erp-backend\\frontend\\node_modules\\typescript\\lib",
     "ultimate.editor.notification.dismissed.AngularFreeTierEditorNotificationProvider": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -81,6 +83,8 @@
       <option name="presentableId" value="Default" />
       <updated>1777148108016</updated>
       <workItem from="1778502090250" duration="862000" />
+      <workItem from="1780235780760" duration="832000" />
+      <workItem from="1780305715225" duration="1336000" />
     </task>
     <servers />
   </component>
