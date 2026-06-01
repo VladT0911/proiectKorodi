@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Edit Order</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px">
+    <mat-label>Order Name</mat-label>
+    <input matInput [(ngModel)]="order.name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px">
+    <mat-label>Order Status</mat-label>
+    <mat-select [(ngModel)]="order.status">
+      <mat-option *ngFor="let status of statusOptions" [value]="status">
+        {{ status }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px">
+    <mat-label>Product Name</mat-label>
+    <input matInput [(ngModel)]="order.product" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px">
+    <mat-label>Quantity</mat-label>
+    <input matInput type="number" [(ngModel)]="order.quantity" />
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+</mat-dialog-actions>
