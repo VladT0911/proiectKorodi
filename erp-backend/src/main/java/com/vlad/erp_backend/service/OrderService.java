@@ -2,6 +2,7 @@ package com.vlad.erp_backend.service;
 
 import com.vlad.erp_backend.dto.OrderDTO;
 import com.vlad.erp_backend.mapper.OrderMapper;
+import com.vlad.erp_backend.model.Order;
 import com.vlad.erp_backend.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,11 @@ public class OrderService {
 
     public OrderDTO updateOrder(Long id,OrderDTO orderDTO)
     {
-        orderRepository.findById(id).orElseThrow(()-> new RuntimeException("Order not found with id: "+id));
+
+        Order existing = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found with id: " + id));
         orderDTO.setId(id);
+        orderDTO.setCreatedAt(existing.getCreatedAt());
         return orderMapper.toDTO(orderRepository.save(orderMapper.toEntity(orderDTO)));
     }
 

@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, signal, inject, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DashboardService } from '../Services/DashboardService';
+import {Conveyor} from '../../models/conveyor.model';
 
 @Component({
   selector: 'app-create-dialog',
@@ -19,31 +22,54 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ]
 })
-export class CreateDialog {
-  order = this.freshOrder();
+export class CreateDialog implements OnInit {
+  private dialogRef = inject(MatDialogRef<CreateDialog>);
+  private dashboardService = inject(DashboardService);
 
-  statusOptions = ['Pending', 'Processing', 'Completed', 'Cancelled'];
+  // signals
+  conveyors = signal<Conveyor[]>([]);
+  isLoading = signal(true);
+  order = signal(this.freshOrder());
 
-  constructor(public dialogRef: MatDialogRef<CreateDialog>) {}
+  statusOptions = ['PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED'];
+
+  ngOnInit() {
+    this.dashboardService.getConveyors().subscribe({
+      next: res => {
+        this.conveyors.set(res);
+        this.isLoading.set(false);
+      },
+      error: err => {
+        console.error('Failed to load conveyors:', err);
+        this.isLoading.set(false);
+      }
+    });
+  }
+
   freshOrder() {
     return {
       name: '',
-      status: 'Pending',
+      status: 'PENDING',
       product: '',
       quantity: 1,
-      createdAt: Date.now()
+      conveyorId: null as number | null
     };
   }
 
+  updateField(field: string, value: any) {
+    this.order.update(o => ({ ...o, [field]: value }));
+  }
+
   save() {
-    this.dialogRef.close(this.order);
-    this.order = this.freshOrder();
+    this.dialogRef.close(this.order());
+    this.order.set(this.freshOrder());
   }
 
   cancel() {
-    this.order = this.freshOrder();
+    this.order.set(this.freshOrder());
     this.dialogRef.close();
   }
 }

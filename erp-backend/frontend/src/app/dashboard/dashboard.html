@@ -103,6 +103,11 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="conveyorName">
+        <th mat-header-cell *matHeaderCellDef>Conveyor</th>
+        <td mat-cell *matCellDef="let order">{{ order.conveyorName || '-' }}</td>
+      </ng-container>
+
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
