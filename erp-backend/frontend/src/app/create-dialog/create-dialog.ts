@@ -32,7 +32,8 @@ export class CreateDialog {
       name: '',
       status: 'Pending',
       product: '',
-      quantity: 1
+      quantity: 1,
+      createdAt: Date.now()
     };
   }
 

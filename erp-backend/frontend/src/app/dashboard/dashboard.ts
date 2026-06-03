@@ -10,11 +10,12 @@ import { CreateDialog } from '../create-dialog/create-dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTableModule, MatCardModule, MatSnackBarModule, MatIconModule,FormsModule],
+  imports: [CommonModule, MatButtonModule, MatTableModule, MatCardModule, MatSnackBarModule, MatIconModule,FormsModule,DatePipe],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
@@ -23,7 +24,7 @@ export class Dashboard implements OnInit {
   orders: any[] = [];
   filteredOrders: any[] = [];
   activeFilter = 'all';
-  displayedColumns: string[] = ['id', 'name', 'status', 'product', 'quantity', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'status', 'product', 'quantity', 'actions','createdAt'];
   private dialog = inject(MatDialog);
   private cdr = inject(ChangeDetectorRef);
   searchTerm = '';
