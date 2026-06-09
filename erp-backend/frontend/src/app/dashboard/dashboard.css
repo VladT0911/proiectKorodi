@@ -285,3 +285,33 @@ css.mat-mdc-header-row {
   font-size: 14px;
 }
 
+.btn-create {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #ffffff;
+  border: 2px solid #6366f1;
+  border-radius: 999px;  /* ← full pill shape like the Tailwind version */
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  transition: all 0.2s;
+  margin: 16px;
+}
+
+.btn-create:hover {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+.btn-create svg {
+  transition: transform 0.2s;
+}
+
+.btn-create:hover svg {
+  transform: translateX(3px);
+}

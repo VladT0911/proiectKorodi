@@ -1,7 +1,9 @@
 package com.vlad.erp_backend.controller;
 
 import com.vlad.erp_backend.dto.OrderDTO;
+import com.vlad.erp_backend.model.Order;
 import com.vlad.erp_backend.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
+/*
+* Cand creezi order ul sa faci un post request la o adresa ip cu un port
+* si sa trimita json cu order ul nou
+*
+* */
 @RestController
 @RequestMapping("/orders")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -26,7 +32,7 @@ public class OrderController {
 
 
     @PostMapping
-    public ResponseEntity<OrderDTO>create(@RequestBody OrderDTO orderDTO)
+    public ResponseEntity<OrderDTO>create(@Valid @RequestBody OrderDTO orderDTO)
     {
         return ResponseEntity.ok(orderService.createOrder(orderDTO));
 
@@ -43,6 +49,12 @@ public class OrderController {
     {
         return ResponseEntity.ok(orderService.updateOrder(id,dto));
     }
+
+   //@PostMapping("/{id}")
+    //public ResponseEntity<OrderDTO> send(@RequestBody OrderDTO orderDTO)
+   //{
+    //
+   //}
 
 
 

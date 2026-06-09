@@ -1,4 +1,4 @@
-import { Component, signal, inject, OnInit } from '@angular/core';
+import {Component, signal, inject, OnInit, ViewEncapsulation} from '@angular/core';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +13,7 @@ import {Conveyor} from '../../models/conveyor.model';
 @Component({
   selector: 'app-create-dialog',
   templateUrl: './create-dialog.html',
+  encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [
     CommonModule,
@@ -33,6 +34,7 @@ export class CreateDialog implements OnInit {
   conveyors = signal<Conveyor[]>([]);
   isLoading = signal(true);
   order = signal(this.freshOrder());
+  errors = signal<Record<string, string>>({});
 
   statusOptions = ['PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED'];
 
@@ -55,15 +57,32 @@ export class CreateDialog implements OnInit {
       status: 'PENDING',
       product: '',
       quantity: 1,
-      conveyorId: null as number | null
+      conveyorId: null as number | null,
+      createdAt: Date.now()
     };
   }
 
   updateField(field: string, value: any) {
     this.order.update(o => ({ ...o, [field]: value }));
+    this.errors.update(e => ({ ...e, [field]: '' }));
   }
 
+  validate(): boolean {
+    const o = this.order();
+    const newErrors: Record<string, string> = {};
+
+    if (!o.name.trim()) newErrors['name'] = 'Order name is required';
+    if (!o.product.trim()) newErrors['product'] = 'Product name is required';
+    if (!o.status) newErrors['status'] = 'Status is required';
+    if (o.quantity < 1) newErrors['quantity'] = 'Quantity must be at least 1';
+
+    this.errors.set(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }
+
+
   save() {
+    if (!this.validate()) return;
     this.dialogRef.close(this.order());
     this.order.set(this.freshOrder());
   }

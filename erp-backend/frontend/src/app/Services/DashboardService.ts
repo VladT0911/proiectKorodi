@@ -8,7 +8,8 @@ import {Conveyor} from '../../models/conveyor.model';
 export class DashboardService {
   private url = 'http://localhost:8083';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.url}/orders`);
@@ -29,5 +30,6 @@ export class DashboardService {
 
   getConveyors(): Observable<Conveyor[]> {
     return this.http.get<Conveyor[]>(`${this.url}/conveyors`);
+
   }
 }
