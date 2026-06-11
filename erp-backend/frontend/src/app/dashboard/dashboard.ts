@@ -11,7 +11,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import {Order} from '../../models/order.model';
-import {Conveyor} from '../../models/conveyor.model';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -30,13 +30,25 @@ export class Dashboard implements OnInit {
   private cdr = inject(ChangeDetectorRef);
   searchTerm = '';
 
-  get totalOrders() { return this.orders.length; }
-  get pendingOrders() { return this.orders.filter(o => o.status === 'PENDING').length; }
-  get processingOrders() { return this.orders.filter(o => o.status === 'PROCESSING').length; }
-  get completedOrders() { return this.orders.filter(o => o.status === 'COMPLETED').length; }
-  get cancelledOrders() { return this.orders.filter(o => o.status === 'CANCELLED').length; }
+  get totalOrders() {
+    return this.orders.length;
+  }
 
-  constructor(private dataService: DashboardService) {}
+  get pendingOrders() {
+    return this.orders.filter(o => o.status === 'PENDING').length;
+  }
+
+  get processingOrders() {
+    return this.orders.filter(o => o.status === 'PROCESSING').length;
+  }
+
+  get completedOrders() {
+    return this.orders.filter(o => o.status === 'COMPLETED').length;
+  }
+
+
+  constructor(private dataService: DashboardService) {
+  }
 
   private notify(message: string) {
     this.snackBar.open(message, 'Close', {
@@ -56,7 +68,14 @@ export class Dashboard implements OnInit {
         this.orders = res;
         this.applyFilter();
       },
-      error: err => console.error('Failed to load orders:', err)
+      error: err => {
+        console.error('Failed to load orders.', err);
+        if (err.status === 0) {
+          this.notify('Something went wrong. Is the backend running?')
+        } else {
+          this.notify(`Error ${err.status}: ${err.statusText}`);
+        }
+      }
     });
   }
 
@@ -102,7 +121,7 @@ export class Dashboard implements OnInit {
 
     const dialogRef = this.dialog.open(EditDialog, {
       width: '480px',
-      data: { order: { ...row } }
+      data: {order: {...row}}
     });
     dialogRef.afterClosed().subscribe((result: Order) => {
       if (result) {
@@ -138,7 +157,7 @@ export class Dashboard implements OnInit {
   }
 
   openCreateDialog(): void {
-    const dialogRef = this.dialog.open(CreateDialog, { width: '480px' });
+    const dialogRef = this.dialog.open(CreateDialog, {width: '480px'});
     dialogRef.afterClosed().subscribe((result: Partial<Order>) => {
       if (result) {
         this.dataService.createOrder(result).subscribe({
@@ -147,9 +166,21 @@ export class Dashboard implements OnInit {
             this.applyFilter();
             this.notify('Order created successfully ✅');
           },
-          error: err => console.error('Failed to create:', err)
+          error: err => {
+            if (err.status === 0) {
+              this.notify('⚠️ Something went wrong. Is the backend started?');
+            } else if (err.status === 400 && err.error) {
+              const messages = Object.values(err.error).join(', ');
+              this.notify(`⚠️ ${messages}`);
+            } else {
+              this.notify('⚠️ Failed to create order');
+            }
+          }
         });
       }
+
     });
+
+
   }
 }

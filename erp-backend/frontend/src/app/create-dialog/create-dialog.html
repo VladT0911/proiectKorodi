@@ -6,14 +6,17 @@
       <mat-spinner diameter="40"></mat-spinner>
     </div>
   } @else {
-    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px">
+    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 12px">
       <mat-label>Order Name</mat-label>
       <input matInput [value]="order().name"
              (input)="updateField('name', $any($event.target).value)"
              placeholder="Enter order name" />
+      @if (errors()['name']) {
+        <mat-hint style="color: #ef4444;">⚠ {{ errors()['name'] }}</mat-hint>
+      }
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px">
+    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 12px">
       <mat-label>Order Status</mat-label>
       <mat-select [value]="order().status"
                   (selectionChange)="updateField('status', $event.value)">
@@ -21,23 +24,32 @@
           <mat-option [value]="status">{{ status }}</mat-option>
         }
       </mat-select>
+      @if (errors()['status']) {
+        <mat-hint style="color: #ef4444;">⚠ {{ errors()['status'] }}</mat-hint>
+      }
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px">
+    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 12px">
       <mat-label>Product Name</mat-label>
       <input matInput [value]="order().product"
              (input)="updateField('product', $any($event.target).value)"
              placeholder="Enter product name" />
+      @if (errors()['product']) {
+        <mat-hint style="color: #ef4444;">⚠ {{ errors()['product'] }}</mat-hint>
+      }
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px">
+    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 12px">
       <mat-label>Quantity</mat-label>
       <input matInput type="number" [value]="order().quantity"
              (input)="updateField('quantity', +$any($event.target).value)"
              min="1" />
+      @if (errors()['quantity']) {
+        <mat-hint style="color: #ef4444;">⚠ {{ errors()['quantity'] }}</mat-hint>
+      }
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 10px">
+    <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 12px">
       <mat-label>Conveyor</mat-label>
       <mat-select [value]="order().conveyorId"
                   (selectionChange)="updateField('conveyorId', $event.value)">
@@ -47,6 +59,9 @@
           </mat-option>
         }
       </mat-select>
+      @if (errors()['conveyorId']) {
+        <mat-hint style="color: #ef4444;">⚠ {{ errors()['conveyorId'] }}</mat-hint>
+      }
     </mat-form-field>
   }
 </mat-dialog-content>

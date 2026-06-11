@@ -33,6 +33,7 @@ export class CreateDialog implements OnInit {
   conveyors = signal<Conveyor[]>([]);
   isLoading = signal(true);
   order = signal(this.freshOrder());
+  errors = signal<Record<string, string>>({});
 
   statusOptions = ['PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED'];
 
@@ -48,6 +49,19 @@ export class CreateDialog implements OnInit {
       }
     });
   }
+  validate(): boolean {
+    const o = this.order();
+    const newErrors: Record<string, string> = {};
+
+    if (!o.name.trim()) newErrors['name'] = 'Order name cannot be empty';
+    if (!o.product.trim()) newErrors['product'] = 'Product name cannot be empty';
+    if (!o.status) newErrors['status'] = 'Status is required';
+    if (o.quantity < 1) newErrors['quantity'] = 'Quantity must be at least 1';
+    if (!o.conveyorId) newErrors['conveyorId'] = 'Conveyor must be selected';  // ← add this
+
+    this.errors.set(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }
 
   freshOrder() {
     return {
@@ -61,11 +75,14 @@ export class CreateDialog implements OnInit {
 
   updateField(field: string, value: any) {
     this.order.update(o => ({ ...o, [field]: value }));
+    this.errors.update(e => ({ ...e, [field]: '' }));
   }
 
   save() {
+    if (!this.validate()) return; // ← blocks if any field is empty
     this.dialogRef.close(this.order());
     this.order.set(this.freshOrder());
+    this.errors.set({});
   }
 
   cancel() {

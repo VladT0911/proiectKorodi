@@ -2,6 +2,7 @@ package com.vlad.erp_backend.controller;
 
 import com.vlad.erp_backend.dto.OrderDTO;
 import com.vlad.erp_backend.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class OrderController {
 
 
     @PostMapping
-    public ResponseEntity<OrderDTO>create(@RequestBody OrderDTO orderDTO)
+    public ResponseEntity<OrderDTO>create(@Valid @RequestBody OrderDTO orderDTO)
     {
         return ResponseEntity.ok(orderService.createOrder(orderDTO));
 
